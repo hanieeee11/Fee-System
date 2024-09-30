@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+class GetInfo { // Create class getting the info of the student
+    static String studentName; // Initiate variables
+    static String course;
+    static String courseCode;
+    static double numOfUnits;
+    static double paymentAmount;
+
+    public static void studentInfo() { // Output and input 
+        Scanner info = new Scanner(System.in);
+
+        System.out.println("Enter Student Name: ");
+        studentName = info.nextLine();
+        System.out.println("Enter Course: ");
+        course = info.nextLine();
+        System.out.println("Enter Course Code: ");
+        courseCode = info.nextLine();
+        System.out.println("Enter Number of Units: ");
+        numOfUnits = info.nextInt();
+
+    }
+    public static double feeComputations(){ 
+        return numOfUnits * 1000; // Number of units multiplied with the fee
+    }
+
+    public static void payment(){  // Method for the payment
+        System.out.println("We will now proceed to payment");
+        System.out.println("Enter payment amount: ");
+        Scanner info = new Scanner(System.in);
+        paymentAmount = info.nextDouble();
+        info.close();
+    }
+
+}
+class Main {
+    public static void main (String[] args) {
+        GetInfo information = new GetInfo(); // Object instantiation
+
+        information.studentInfo();
+        System.out.println("Name: " + GetInfo.studentName);
+        System.out.println("Total Fee: " + information.feeComputations());
+        System.out.println("--------------------------------------------");
+        information.payment();
+
+    // Conditions for the payment
+    if (information.feeComputations() == GetInfo.paymentAmount) { 
+        System.out.println("Fully Paid");
+    }
+    else if(information.feeComputations() > GetInfo.paymentAmount){
+        System.out.println("Partial Payment");
+        System.out.println("You made a partial payment of: " + GetInfo.paymentAmount);
+        }
+    }
+}
